@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './App.css';
 
 class App extends Component {
@@ -21,6 +21,14 @@ class App extends Component {
         }
       ]
     };
+	  setTimeout(() => {
+		  let instructorIndex = Math.floor(Math.random() * this.state.instructors.length);
+		  let hobbiesIndex = Math.floor(Math.random() * this.state.instructors[ instructorIndex ].hobbies.length);
+		  const instructors = this.state.instructors.map((instructor, i) => ( i === instructorIndex ?
+			  {...instructor, hobbies: instructor.hobbies.splice(hobbiesIndex, 1)}
+			  : instructor ));
+		  this.setState({instructors});
+	  }, 5000);
   }
   render() {
     const instructors = this.state.instructors.map((instructor, index) => (
